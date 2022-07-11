@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to our Movie Reservation Website</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="author" content="Timo Angst & Kai Bria">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css} "/>
+    <!--<link th:href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />-->
+</head>
+<body>
+<div class="container-fluid">
+    <h1 th:text="#{title.application}">Film Reservierung </h1>
+    <form th:action="@{/movie}"
+          th:object="${movie}" method="post">
+        <table class="table">
+            <tr>
+                <td th:text="#{movie.firstname}"><label for="vorname">Name der Person:</label></td>
+                <td><input type="text" id="vorname" th:field="*{vorname}"/></td>
+                <td th:if="${#fields.hasErrors('vorname')}" th:errors="*{vorname}">Grösse muss zwischen 1 und 16 sein
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{movie.name}"><label for="name">Vorname der Person:</label></td>
+                <td><input id="name" type="text" th:field="*{name}"/></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Grösse muss zwischen 1 und 16 sein</td>
+            </tr>
+            <tr>
+                <td th:text="#{movie.email}"><label for="email">Email der Person:</label></td>
+                <td><input id="email" type="text" th:field="*{email}"/></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Es muss eine valide E-Mail Adresse
+                    angegeben werden
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{movie.telnr}"><label for="tel">Tel. Nummer der Person:</label></td>
+                <td><input id="tel" type="text" th:field="*{telNummer}"/></td>
+                <td th:if="${#fields.hasErrors('telNummer')}" th:errors="*{telNummer}">Es muss eine valide Telefon
+                    Nummer angegeben werden
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{movie.movieName}"><label for="movieName">Name des Films:</label></td>
+                <td><input id="movieName" type="text" th:field="*{movieName}"/></td>
+                <td th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}">Der Filmname darf nicht leer
+                    sein
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{movie.releaseYear}"><label for="releaseYear">Erscheinungsjahr Film:</label></td>
+                <td>
+                    <input id="releaseYear" type="number" th:field="*{releaseYear}"
+                           aria-label="releaseYear"></td>
+                <td th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Das Filmerscheinungsjahr darf
+                    nicht tiefer als 1900 sein
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input class="btn btn-success" type="submit"
+                           value="Submit"/> <input class="btn btn-warning" type="reset"
+                                                   value="Reset"/></td>
+            </tr>
+        </table>
+
+        <h3>global errors</h3>
+        <ul>
+            <li th:each="e : ${#fields.detailedErrors()}"
+                th:class="${e.global}? globalerr : fielderr"><span
+                    th:text="${e.global}? '*' : ${e.fieldName}">The field name</span> |
+                <span th:text="${e.message}">The error message</span></li>
+        </ul>
+    </form>
+    </form>
+</div>
+</body>
+</html>
