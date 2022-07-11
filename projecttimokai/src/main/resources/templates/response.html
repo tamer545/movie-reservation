@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>Film Reservierung</title>
+</head>
+<body>
+<div class="container-fluid" th:object="${movie}">
+    <ul class="list-group">
+        <li class="list-group-item"><h1>Guten Tag lieber Besucher. Ihr Film wurde erfolgreich reserviert und wir
+            wünschen ihnen viel Vergnügen.</h1></li>
+        <li class="list-group-item" th:text="'Name: ' + ${movie.name}"/>
+        <li class="list-group-item" th:text="'Vorname: ' + ${movie.vorname}"/>
+        <li class="list-group-item" th:text="'E-Mail: ' + ${movie.email}"/>
+        <li class="list-group-item" th:text="'Tel-Nr.: ' + ${movie.telNummer}"/>
+        <li class="list-group-item" th:text="'Filmname: ' + ${movie.movieName}"/>
+        <li class="list-group-item" th:text="'Erscheinungsjahr: ' + ${movie.releaseYear}"/>
+    </ul>
+    <a href="/movie"> Einen neuen Film reservieren</a>
+
+    <!-- -->
+</div>
+
+
+</body>
+</html>
